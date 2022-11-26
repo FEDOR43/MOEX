@@ -1,6 +1,6 @@
 # This is a sample Python script.
 import requests
-from dotenv import load_dotenv
+from authentication import auth_headers
 
 # Press Shift+F10 to execute it or replace it with your code.
 # Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
@@ -8,7 +8,22 @@ from dotenv import load_dotenv
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    # print(auth_headers)# Press Ctrl+F8 to toggle the breakpoint.
+    r = requests.get(url="http://iss.moex.com/iss/engines.json", headers=auth_headers)
+    r2 = requests.get(url="http://iss.moex.com/iss/engines/stock/markets.json", headers=auth_headers)
+    r3 = requests.get(url="http://iss.moex.com/iss/engines/stock/markets/bonds/trades/colums.json", headers=auth_headers)
+    r4 = requests.get(url="http://iss.moex.com/iss/engines/stock/markets/bonds.json",
+                      headers=auth_headers)
+    r5 = requests.get(url="http://iss.moex.com/iss/securities.json", headers=auth_headers)
+    # print(r.content.decode())
+    # print(r2.content.decode())
+    r3 = requests.get(url="http://iss.moex.com/iss/engines/stock/markets/bonds/trades/boards.json",
+                      headers=auth_headers)
+    result = r3.content.decode()
+    # print(type(result))
+    print(result)
+    # print(r4.content.decode())
+    # print(r5.content.decode())
 
 
 # Press the green button in the gutter to run the script.
